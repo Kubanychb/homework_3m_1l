@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>book</title>
+</head>
+<body>
+<div>
+  <h2><a href="/book/<int:pk>/">{{ book.title }}</a></h2>
+  <p>{{ book.description }}</p>
+  <img src="{{ book.image.url }}" alt="">
+  <p>{{ book.created_date}}</p>
+     <p>{{ author }}</p>
+  <p>{{ updated_data }}</p>
+</div>
+</body>
+</html>
