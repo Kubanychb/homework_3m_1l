@@ -6,6 +6,10 @@
 </head>
 <body>
 <div>
+    <div class="container button__container">
+      <a href="/book/" class="btn btn-primary">Book</a>
+
+   </div>
   <h2><a href="/book/<int:pk>/">{{ book.title }}</a></h2>
   <p>{{ book.description }}</p>
   <img src="{{ book.image.url }}" alt="">

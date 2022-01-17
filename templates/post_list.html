@@ -1,20 +1,59 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>book</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css/' %}">
 </head>
+<style>
+    .posts__container {
+        max-width: 900px;
+        margin-bottom: 40px;
+    }
+
+    body {
+        background-color: #0093E9;
+        background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+    }
+    .post__img{
+         height: 800px;
+         object-fit: contain;
+    }
+    .btn-primary {
+         background-color: #FBAB7E;
+         background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+
+    }
+    .button__container{
+         max-width: 1300px;
+         margin-bottom: 20px;
+         margin-top: 20px;
+    }
+</style>
+
+<div class="container button__container">
+      <a href="/book/" class="btn btn-primary">Book</a>
+
+</div>
+
 <body>
-<div>
-    <ul>
+<div class="container posts_container">
+    <div class="row gy-5">
         {% for i in post %}
-        <li>
-            <h2><a href="/book/{{ i.pk }}">{{i.title }}</a></h2>
-            <p>{{i.description }}</p>
-            <img src="{{ i.image.url }}" alt="">
-        </li>
+        <div class="col-6">
+        <div class="card">
+  <img src="{{ i.image.url }}" class="card-img-top post__img" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ i.title }}</h5>
+    <p class="card-text">{{ i.description }}</p>
+    <a href="/book/{{ i.pk }}/" class="btn btn-primary">Go detail</a>
+  </div>
+</div>
+            </div>
         {% endfor %}
-    </ul>
+        </div>
 </div>
 
 
