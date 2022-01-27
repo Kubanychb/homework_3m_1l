@@ -1,21 +1,99 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>book</title>
+    <title>Book</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css/' %}"/>
 </head>
 <body>
-<div>
-    <div class="container button__container">
-      <a href="/book/" class="btn btn-primary">Book</a>
+<style>
+    .btn-primary {
+        background-color: #D9AFD9;
+        background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+    }
 
-   </div>
-  <h2><a href="/book/<int:pk>/">{{ book.title }}</a></h2>
-  <p>{{ book.description }}</p>
-  <img src="{{ book.image.url }}" alt="">
-  <p>{{ book.created_date}}</p>
-     <p>{{ author }}</p>
-  <p>{{ updated_data }}</p>
+    .button__container {
+        max-width: 960px;
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    body {
+        background-color: #21D4FD;
+        background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+    }
+
+    .detail-image {
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .book-detail {
+        height: 90%;
+    }
+
+    .list-group-item {
+        background-color: #8BC6EC;
+        background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+        font-family: Arial, Helvetica, sans-serif;
+        height: 90%;
+    }
+
+    .body__button {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .container {
+        height: 50%;
+    }
+
+    .book-detail {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #21D4FD;
+        background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+        margin-bottom: 10%;
+    }
+</style>
+<div class="button__container">
+    <button type="button" class="btn btn-primary"><a href="/book/">Book</a></button>
+    <button type="button" class="btn btn-primary"><a href="/add-book/">Add Book</a></button>
+</div>
+<div class="container book-detail">
+    <img src="{{ object.image.url }}" class="card-img-top detail-image" alt="...">
+    <div class="card-body body_detail">
+        <h5 class="card-title">{{ object.title }}</h5>
+        <p class="card-text">{{ object.description }}</p>
+
+    </div>
+    <div>
+        <h2>Comments: </h2>
+        <ul>
+            {% for i in object.book_comment.all %}
+            <li>
+                <p>{{ i.text }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h2>Recommends </h2>
+        <ul>
+            {% for i in object.expert.all %}
+            <li>
+                <p> {{ i.text }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="card-body body__button">
+        <button type="button" class="btn btn-primary"><a href="/book/{{ object.pk }}/update/">Change {{ object.title }}</a></button>
+        <button type="button" class="btn btn-primary"><a href="/book/{{ object.pk }}/delete/">Delete {{ object.title }}</a></button>
+    </div>
 </div>
 </body>
 </html>
